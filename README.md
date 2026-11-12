@@ -5,3 +5,5 @@
 Recomp of Blackthorne for SNES
 
 Open the [latest Windows or macOS release](https://github.com/Bentley734/Blackthorne-SNES-Recomp/releases/latest) and choose your Blackthorne (USA) SNES cartridge dump. RecompLauncher supports Easy Setup and in-launcher display and audio settings.
+
+[![Verified developer on RecompStore](https://recompstore.com/assets/press/verified-dark.svg)](https://recompstore.com/dev/bentley734)
