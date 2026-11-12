@@ -1,0 +1,206 @@
+{
+  "$schema": "https://recomplauncher.com/schema/recomplauncher.json",
+  "format": 1,
+  "name": "Blackthorne Recomp",
+  "repo": "Bentley734/Blackthorne-SNES-Recomp",
+  "game": {
+    "label": "Your Blackthorne (USA) Super NES cartridge dump (.sfc or .smc).",
+    "dumps": [
+      {
+        "name": "Blackthorne (USA), headerless",
+        "size": 1048576,
+        "crc32": "856beab1"
+      }
+    ],
+    "kind": "iso"
+  },
+  "start": {
+    "program": [
+      "BlackthorneRecomp.exe",
+      "Blackthorne Recomp.app/Contents/MacOS/BlackthorneRecomp"
+    ],
+    "args": [
+      "--no-launcher",
+      "--game",
+      "{game}"
+    ]
+  },
+  "prepare": {
+    "program": [
+      "BlackthorneRecomp.exe",
+      "Blackthorne Recomp.app/Contents/MacOS/BlackthorneRecomp"
+    ],
+    "args": [
+      "--verify-rom",
+      "{game}"
+    ],
+    "label": "Verify the Blackthorne cartridge",
+    "timeout": 30
+  },
+  "config": [
+    {
+      "id": "main",
+      "format": "ini",
+      "file": [
+        {
+          "path": "{install}/config.ini",
+          "if": "{install}/portable.txt"
+        },
+        {
+          "path": "{install}/config.ini",
+          "if": "{install}/BlackthorneRecomp.exe"
+        },
+        {
+          "path": "{home}/Library/Application Support/Blackthorne Recomp/config.ini"
+        }
+      ],
+      "ensure": {
+        "Graphics/WindowScale": "3",
+        "Graphics/NewRenderer": "1",
+        "Graphics/NoSpriteLimits": "1",
+        "Sound/AudioFreq": "32000"
+      }
+    }
+  ],
+  "settings": [
+    {
+      "id": "aspect",
+      "label": "Aspect ratio",
+      "group": "Display",
+      "help": "Wider modes show surrounding terrain and enemies.",
+      "choices": [
+        {
+          "label": "4:3",
+          "set": {
+            "Graphics/DisplayAspect": "4:3"
+          }
+        },
+        {
+          "label": "8:7",
+          "set": {
+            "Graphics/DisplayAspect": "8:7"
+          }
+        },
+        {
+          "label": "1:1",
+          "set": {
+            "Graphics/DisplayAspect": "1:1"
+          }
+        },
+        {
+          "label": "MacBook Pro 14-inch",
+          "set": {
+            "Graphics/DisplayAspect": "3024:1964"
+          }
+        },
+        {
+          "label": "16:9",
+          "set": {
+            "Graphics/DisplayAspect": "16:9"
+          }
+        },
+        {
+          "label": "21:9",
+          "set": {
+            "Graphics/DisplayAspect": "21:9"
+          }
+        },
+        {
+          "label": "32:9",
+          "set": {
+            "Graphics/DisplayAspect": "32:9"
+          }
+        }
+      ],
+      "defaults": {
+        "Graphics/DisplayAspect": "4:3"
+      }
+    },
+    {
+      "id": "fullscreen",
+      "label": "Fullscreen",
+      "group": "Display",
+      "choices": [
+        {
+          "label": "Off",
+          "set": {
+            "Graphics/Fullscreen": "0"
+          }
+        },
+        {
+          "label": "On",
+          "set": {
+            "Graphics/Fullscreen": "1"
+          }
+        }
+      ],
+      "defaults": {
+        "Graphics/Fullscreen": "0"
+      }
+    },
+    {
+      "id": "audio",
+      "label": "Game audio",
+      "group": "Sound",
+      "choices": [
+        {
+          "label": "Off",
+          "set": {
+            "Sound/EnableAudio": "0"
+          }
+        },
+        {
+          "label": "On",
+          "set": {
+            "Sound/EnableAudio": "1"
+          }
+        }
+      ],
+      "defaults": {
+        "Sound/EnableAudio": "1"
+      }
+    },
+    {
+      "id": "volume",
+      "label": "Volume",
+      "group": "Sound",
+      "slider": {
+        "key": "Sound/Volume",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "format": "%d"
+      },
+      "defaults": {
+        "Sound/Volume": "100"
+      }
+    }
+  ],
+  "folders": {
+    "logs": [
+      {
+        "path": "{install}",
+        "if": "{install}/portable.txt"
+      },
+      {
+        "path": "{install}",
+        "if": "{install}/BlackthorneRecomp.exe"
+      },
+      {
+        "path": "{home}/Library/Application Support/Blackthorne Recomp"
+      }
+    ]
+  },
+  "saves": [
+    "{install}/config.ini",
+    "{install}/keybinds.ini",
+    "{home}/Library/Application Support/Blackthorne Recomp/config.ini",
+    "{home}/Library/Application Support/Blackthorne Recomp/keybinds.ini"
+  ],
+  "exit_codes": {
+    "65": "Select the supported Blackthorne (USA) SNES cartridge dump. Unzip it first if needed."
+  },
+  "looks": {
+    "lines": 224
+  }
+}
